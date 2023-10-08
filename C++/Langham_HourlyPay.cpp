@@ -13,6 +13,17 @@
 #include <iomanip>
 using namespace std;
 
+
+// Example function prototype
+// void userInput (double &num1);
+
+// fuctions:
+// userInput
+//calculateGrossPay
+//calculateOvertime
+//calculateNetPay
+//DisplayPay
+
 int main()
 {
     // Declare variables
@@ -23,7 +34,8 @@ int main()
 
     // Get the gross pay
     // Get the overtime pay
-    // Get
+    // Get Net pay & taxes total
+    // Display pay totals
 
     return 0;
 }
@@ -90,4 +102,15 @@ int calculateOvertime()
     overtime = overtimeHours * overtimepay;
 
     return overtime;
+}
+
+int calculateNetPay ()
+{
+    //Declare Variables
+
+    // Get Taxes & Subtract Tax from Total Pay
+
+    //Return net pay & Tax Total
+
+
 }
