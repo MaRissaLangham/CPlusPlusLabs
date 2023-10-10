@@ -15,14 +15,12 @@ using namespace std;
 
 
 // Example function prototype
-// void userInput (double &num1);
-
-// fuctions:
-// userInput
-//calculateGrossPay
-//calculateOvertime
-//calculateNetPay
-//DisplayPay
+// int userInput (double &num1);
+// int calculateGrossPay
+// int calculateOvertime
+// int calculateNetPay
+// int CalculateVacationPay
+// void DisplayPay
 
 int main()
 {
@@ -113,4 +111,38 @@ int calculateNetPay ()
     //Return net pay & Tax Total
 
 
+}
+
+int CalculateVacationPay()
+{
+    // Declare variables
+    double hours, regularPay, overtimeHours, overtimepay, grossPay, netPay, overtime, taxes, holidayPay;
+
+    // Calculate the vacation pay
+    vacationPay = hours * (2 * regularPay);
+
+    return vacationPay;
+}
+
+void DisplayPay()
+{
+    // Declare variables
+    double hours, regularPay, overtimeHours, overtimepay, grossPay, netPay, overtime, taxes, holidayPay;
+
+    // Display the gross pay
+    cout << "Your gross biweekly pay is: $" << grossPay << endl;
+
+    // Display the net pay
+    cout << "Your net biweekly pay is: $" << netPay << endl;
+
+    // Display the overtime pay
+    cout << "Your overtime pay for the paycheck is: $" << overtime << endl;
+
+    // Display Hoilday Pay
+    cout << "Your holiday pay for the paycheck is: $" << holidayPay << endl;
+
+    // Display the taxes
+    cout << "Your biweekly taxes withheld are: $" << taxes << endl;
+
+    return 0;
 }
