@@ -15,7 +15,7 @@ using namespace std;
 
 
 // Example function prototype
-// int userInput (double &num1);
+// int userInput (double &hours, double &regularPay, &overtimeHours, &overtimepay, &holidayPay, &holidayhours;);
 // int calculateGrossPay
 // int calculateOvertime
 // int calculateNetPay
@@ -38,20 +38,29 @@ int main()
     return 0;
 }
 
-
 int userInput()
 {
     // Declare variables
     double hours, regularPay, overtimeHours, overtimepay, grossPay, netPay, overtime, taxes, holidayPay;
 
     // Get the number of hours worked
-    cout << "How many hours did you work? ";
+    cout << "How many hours did you work? (Do NOT include hoilday pay, if any.) ";
     cin >> hours;
+
+    if hours > 80
+    {
+        overtimeHours = hours - 80;
+
+    }
+    else
+    {
+        overtimeHours = 0;
+    }
 
     // Get the hourly pay rate, overtime, and vaction pay
     cout << "How much do you get paid per hour? ";
     cin >> regularPay;
-    cout << "How much do you get paid per hour for overtime? ";
+    cout << "How much do you get paid per hour for overtime? "; // Need to ask the user if they get 1.5 or 2 times their regular pay
     cin >> overtimepay;
     cout << "Did you get holiday pay, this paycheck? (Y/N) ";
     cin >> holidayPay;
@@ -59,7 +68,7 @@ int userInput()
     // Ask if the user got holiday pay
     if (holidayPay == 'Y' || holidayPay == 'y')
     {
-        cout << "How much do you get paid for holiday pay? ";
+        cout << "How much do you get paid for holiday pay? "; // Need to ask the user if they get 1.5 or 2 times their regular pay
         cin >> holidayPay;
     }
     else if (holidayPay == 'N' || holidayPay == 'n')
