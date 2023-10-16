@@ -13,14 +13,13 @@
 #include <iomanip>
 using namespace std;
 
-
-// Example function prototype
-// int userInput (double &hours, double &regularPay, &overtimeHours, &overtimepay, &holidayPay, &holidayhours;);
-// int calculateGrossPay
-// int calculateOvertime
-// int calculateNetPay
-// int CalculateVacationPay
-// void DisplayPay
+// Function prototypes
+void userInput (double &hours, double &regularPay, double &overtimeHours, double &overtimePay, double &holidayPay, double &holidayPayRate, double &holidayHours);
+void calculateGrossPay (double &hours, double &regularPay, double &overtimeHours, double &overtimepay, double &holidayPay, double &holidayPayRate, double &holidayHours);
+void calculateOvertime ();
+void calculateNetPay ();
+void CalculateVacationPay ();
+void DisplayPay ();
 
 int main()
 {
@@ -38,52 +37,48 @@ int main()
     return 0;
 }
 
-int userInput()
+void userInput()
 {
     // Declare variables
-    double hours, regularPay, overtimeHours, overtimepay, grossPay, netPay, overtime, taxes, holidayPay;
+    double hours, overtimeHours, regularPay, overtimepayRate, holidayPayRate, overtimePay, holidayPay, holidayHours;
 
     // Get the number of hours worked
     cout << "How many hours did you work? (Do NOT include hoilday pay, if any.) ";
     cin >> hours;
 
-    if hours > 80
-    {
-        overtimeHours = hours - 80;
+        if (hours > 80)
+        {
+            overtimeHours = hours - 80;
 
-    }
-    else
-    {
-        overtimeHours = 0;
-    }
+        }
+        else
+        {
+            overtimeHours = 0;
+        }
 
     // Get the hourly pay rate, overtime, and vaction pay
     cout << "How much do you get paid per hour? ";
     cin >> regularPay;
     cout << "How much do you get paid per hour for overtime? "; // Need to ask the user if they get 1.5 or 2 times their regular pay
-    cin >> overtimepay;
+    cin >> overtimePayRate;
     cout << "Did you get holiday pay, this paycheck? (Y/N) ";
     cin >> holidayPay;
 
-    // Ask if the user got holiday pay
-    if (holidayPay == 'Y' || holidayPay == 'y')
-    {
-        cout << "How much do you get paid for holiday pay? "; // Need to ask the user if they get 1.5 or 2 times their regular pay
-        cin >> holidayPay;
-    }
-    else if (holidayPay == 'N' || holidayPay == 'n')
-    {
-        holidayPay = 0;
-    }
-    else
-    {
-        cout << "Invalid input. Please enter Y or N. ";
-        cin >> holidayPay;
-    }
-
-
-
-    return 0;
+        // Ask if the user got holiday pay
+        if (holidayPay == 'Y' || holidayPay == 'y')
+        {
+            cout << "How much do you get paid for holiday pay? "; // Need to ask the user if they get 1.5 or 2 times their regular pay
+            cin >> holidayPayRate;
+        }
+        else if (holidayPay == 'N' || holidayPay == 'n')
+        {
+            holidayPayRate = 1;
+        }
+        else
+        {
+            cout << "Invalid input. Please enter Y or N. ";
+            cin >> holidayPay;
+        }
 }
 
 int calculateGrossPay()
@@ -92,26 +87,23 @@ int calculateGrossPay()
     double hours, regularPay, overtimeHours, overtimepay, grossPay, netPay, overtime, taxes, holidayPay;
 
     // Calculate the gross pay
-    grossPay = hours * regularPay;
+    grossPay = (hours * regularPay) + (overtimeHours * overtimePay) + (holidayHours * holidayPayRate);
 
     return grossPay;
 }
 
-int calculateOvertime()
+void calculateOvertime()
 {
     // Declare variables
     double hours, regularPay, overtimeHours, overtimepay, grossPay, netPay, overtime, taxes, holidayPay;
-
-    // Calculate the overtime hours
-    overtimeHours = hours - 80;
-
+    
     // Calculate the overtime pay
-    overtime = overtimeHours * overtimepay;
+    overtimeTotal = overtimeHours * overtimePay;
 
-    return overtime;
+    return overtimeTotal;
 }
 
-int calculateNetPay ()
+void calculateNetPay ()
 {
     //Declare Variables
 
@@ -122,7 +114,7 @@ int calculateNetPay ()
 
 }
 
-int CalculateVacationPay()
+void CalculateVacationPay()
 {
     // Declare variables
     double hours, regularPay, overtimeHours, overtimepay, grossPay, netPay, overtime, taxes, holidayPay;
