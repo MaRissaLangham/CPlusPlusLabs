@@ -8,8 +8,8 @@
 // Instructor: Sravan Kumpati
 // This program will compute and display a restaurant tip based on 
 // a total bill excluding tax.
-// Program Pass Test?
-// Program Meet Requirements?
+// Program Pass Test? Yes.
+// Program Meet Requirements? Yes.
 //******************************************************************
 
 /*
@@ -31,66 +31,70 @@ using namespace std;
 class Tips 
 {
 private:
-  double taxRate;
+    double taxRate;
 
 public:
-    Tips()
+    Tips() 
     {
         taxRate = 0.085;
     }
-  Tips(double UsertaxRate) 
-  {
-    taxRate = UsertaxRate / 100;
-  }
+    Tips(double userTaxRate) 
+    {
+        taxRate = userTaxRate / 100;
+    }
 
-  double computeTip(double totalBill, double tipRate) 
-  {
-    double mealCost = totalBill / (1 + taxRate);
-    return mealCost * tipRate;
-  }
+    double computeTip(double totalBill, double tipRate) 
+    {
+        double mealCost = totalBill / (1 + taxRate);
+        return mealCost * tipRate / 100; // Convert tipRate to a percentage
+    }
 };
 
-int main() {
+int main() 
+{
+    double userTaxRate;
 
-  double UsertaxRate;
+    cout << "This program will compute a restaurant tip based on a total bill "
+            "amount and the % the patron wishes to tip the server." << endl;
 
-  cout << "This program will compute a restaurant tip based on a total bill "
-          "amount and the % the patron wishes to tip the server."
-       << endl;
+    cout << "Tax % for this location: ";
+    cin >> userTaxRate;
 
-  cout << "Tax % for this location: ";
-   cin >> UsertaxRate;
-
-  while (UsertaxRate < 0.0) 
+    while (userTaxRate < 0.0) 
     {
-      cout << "Tax % cannot be less than 0. Please re-enter tax %: ";
-      cin >> UsertaxRate;
+        cout << "Tax % cannot be less than 0. Please re-enter tax %: ";
+        cin >> userTaxRate;
     }
- 
 
-  Tips tipCalculator(UsertaxRate);
+    Tips tipCalculator(userTaxRate);
 
-  char continueCalculating = 'y';
+    char continueCalculating = 'y';
 
-  while (continueCalculating == 'y' || continueCalculating == 'Y') 
-  {
-    cout << "***********Tip Helper ***********" << endl;
+    while (continueCalculating == 'y' || continueCalculating == 'Y') 
+    {
+        cout << "***********Tip Helper ***********" << endl;
 
-    double totalBill, tipRate;
+        double totalBill, tipRate;
 
-    cout << "Enter total bill amount: ";
-    cin >> totalBill;
+        cout << "Enter total bill amount: ";
+        cin >> totalBill;
 
-    cout << "Enter desired tip %: ";
-    cin >> tipRate;
+        cout << "Enter desired tip %: ";
+        cin >> tipRate;
 
-    double tipAmount = tipCalculator.computeTip(totalBill, tipRate);
+        double tipAmount = tipCalculator.computeTip(totalBill, tipRate);
 
-    cout << "The tip should be: $" << tipAmount << endl;
+        cout << fixed << setprecision(2); // Set output to two decimal places
+        cout << "The tip should be: $" << tipAmount << endl;
 
-    cout << "Compute another tip (y/n)? ";
-    cin >> continueCalculating;
-  }
+        cout << "Compute another tip (y/n)? ";
+        cin >> continueCalculating;
+    }
 
-  return 0;
+    return 0;
 }
+
+
+
+
+
