@@ -1,16 +1,15 @@
 //******************************************************************
 // Author: Marissa Langham
-// Assignment Number: Chapter 7 Lab: Sales Bar Chart
+// Assignment Number: Chapter 7 Lab: Gradutity Calculator
 // File Name: Langham_Ch5Lab.cpp
 // Course/Section: COSC 1337
-// Date Started: 09.26.23
-// Date Completed: 09.26.23
+// Date Started: 10.17.23
+// Date Completed: 10.17.23
 // Instructor: Sravan Kumpati
-// An interactive program that asks the user to enter today’s sales
-// for each of three stores. The program should then produce a bar 
-// graph (made up of asterisk) displaying each of the store’s sales.   
-// Program Pass Test? Yes.
-// Program Meet Requirements? Yes.
+// This program will compute and display a restaurant tip based on 
+// a total bill excluding tax.
+// Program Pass Test?
+// Program Meet Requirements?
 //******************************************************************
 
 /*
@@ -35,13 +34,13 @@ private:
   double taxRate;
 
 public:
-  Tips(double taxRate) 
-  {
-    while (taxRate < 0.0) 
+    Tips()
     {
-      cout << "Tax % cannot be less than 0. Please re-enter tax %: ";
-      cin >> taxRate;
+        taxRate = 0.085;
     }
+  Tips(double UsertaxRate) 
+  {
+    taxRate = UsertaxRate / 100;
   }
 
   double computeTip(double totalBill, double tipRate) 
@@ -53,16 +52,23 @@ public:
 
 int main() {
 
-  double taxRate;
+  double UsertaxRate;
 
   cout << "This program will compute a restaurant tip based on a total bill "
           "amount and the % the patron wishes to tip the server."
        << endl;
 
   cout << "Tax % for this location: ";
-  cin >> taxRate;
+   cin >> UsertaxRate;
 
-  Tips tipCalculator(taxRate);
+  while (UsertaxRate < 0.0) 
+    {
+      cout << "Tax % cannot be less than 0. Please re-enter tax %: ";
+      cin >> UsertaxRate;
+    }
+ 
+
+  Tips tipCalculator(UsertaxRate);
 
   char continueCalculating = 'y';
 
