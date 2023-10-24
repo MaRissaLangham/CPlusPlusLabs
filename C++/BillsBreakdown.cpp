@@ -1,4 +1,4 @@
-''''''''''''''''''//******************************************************************
+//******************************************************************
 // Author: Marissa Langham
 // Date: 10.18.2023
 // Bill Breakdown
@@ -16,7 +16,7 @@ int main ()
     string billName;
 
 
-char continueCalculating = 'y';''''''''''''''''''
+char continueCalculating = 'y';
 
 while (continueCalculating == 'y' || continueCalculating == 'Y') 
     {
