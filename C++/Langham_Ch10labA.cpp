@@ -1,49 +1,56 @@
 //*********************************************************************************************
 // Author: Marissa Langham
-// Assignment Number: Chapter 9 Lab: Sorting a Playlist
-// File Name: Langham_Ch9lab.cpp
+// Assignment Number: Chapter 10 Lab: Pointers
+// File Name: Langham_Ch10labA.cpp
 // Course/Section: COSC 1337
-// Date Started: 10.26.23
-// Date Completed: 10.26.23
+// Date Started: 11.09.23
+// Date Completed: 11.09.23
 // Instructor: Sravan Kumpati
-// a program that allows the user to enter 10 songs and their artists 
-// into a playlist and will sort the entries by artist order.
-// Program Pass Test? Yes.
-// Program Meet Requirements? Yes.
+// Description: Write a program that uses a function to determine the median of a sorted 
+// array of integers.
+// Program Pass Test? Yes
+// Program Meet Requirements? Yes
 //*********************************************************************************************
 
 /*
 Directions:
-You will write a program that allows the user to enter 10 songs and 
-their artists into a playlist and will sort the entries by artist order. 
-The program should use a 10 element array of structure objects that holds
-two string variables:  artist and title.  Once the data has been read in 
-and stored, it should sort the entries in ascending order by artist. 
-It should then display the sorted array with appropriate headings.
+Write a program that uses a function to determine the median of a sorted array of integers.
+Your program should start with two arrays of integers containing the following values:
 
-Modularity:  
-The main function should create the Playlist object and call at least 3 other functions:
+    Even numbered array: 17 32 45 68 99 101 67 89 22 27
+    Odd numbered array: 17 32 45 68 99 101 67 89 22
 
-1. Get the data from the user. Using a loop, have the user populate the 
-    playlist object array with 10 artist and songs in no particular order.
-    No validation is necessary. However, you should use the C++ getline 
-    function instead of cin so that the user can type spaces in the name 
-    and song title.
-2. Sort the list. You may use either the bubble sort or the selection 
-    sort to sort your playlist.
-3. Display the list. The function should display the artist and title
-    in sorted order with appropriate headings.  
+Using a sort function of your choice, first sort the arrays. 
+NOTE: you may use the STL sort function or your own sort function. 
+To use the STL sort:
+    Add #include <algorithm> to your program
+    sort (arrayname, arrayname + size of array) (beginning and ending elements)
+
+Then, write a function that determines the median of a sorted array. The function should take
+an array of numbers and an integer indicating the size of the array and return the median of the
+values in the array. The same function should be called twice – once for the even array and
+once for the odd array.
+
+Your program should also have a printArray function that can be used to print the sorted array.
+(It should be called twice, once for each array). It should be passed the array and its size.
+Input validation – none.
+Modularity – In addition to the main function, your program should have a sort function, the
+median function, and the printArray function.
+
+When an array is passed to the median and printArray functions, it should be passed using 
+pointer notation. Within each of these two functions, the array should be referred to by pointer 
+notation. In other words, use *(arr + n) instead of arr[n].
 
 Sample Output:
 
-Playlist
+Median of the odd array:
+17 22 32 45 67 68 89 99 101
+is 67
 
-Artist-Title
-============================================
-1. Cream - Sunshine of Your Love
-2. Jimi Hendrix - All Along the Watchtower
-3. Stevie Ray Vaughn - Texas Flood
-4. ZZ Top - La Grange
+Median of the even array:
+17 22 27 32 45 67 68 89 99 101
+is 56
+
 */
 
 /*
@@ -57,11 +64,70 @@ questions with full integrity and honesty, I understand if I answer
 */
 
 #include <iostream>
+#include <algorithm>
+
 
 using namespace std;
 
-int main()
+// Function prototypes
+void sortArray(int* arr, int size);
+int findMedian(int* arr, int size);
+void printArray(int* arr, int size);
+
+int main() 
 {
+    // Even numbered array
+    int evenArray[] = {17, 32, 45, 68, 99, 101, 67, 89, 22, 27};
+    int evenSize = sizeof(evenArray) / sizeof(evenArray[0]);
+
+    // Odd numbered array
+    int oddArray[] = {17, 32, 45, 68, 99, 101, 67, 89, 22};
+    int oddSize = sizeof(oddArray) / sizeof(oddArray[0]);
+
+    // Sort arrays
+    sortArray(evenArray, evenSize);
+    sortArray(oddArray, oddSize);
+
+    // Print and Calculate median for the odd array
+    cout << "Median of the odd array:\n";
+    printArray(oddArray, oddSize);
+    cout << "is " << findMedian(oddArray, oddSize) << endl;
+
+    // Print and Calculate median for the even array
+    cout << "\nMedian of the even array:\n";
+    printArray(evenArray, evenSize);
+    cout << "is " << findMedian(evenArray, evenSize) << endl;
 
     return 0;
+}
+
+// Function to sort an array
+void sortArray(int* arr, int size) 
+{
+    sort(arr, arr + size);
+}
+
+// Function to find median
+int findMedian(int* arr, int size)
+{
+    if (size % 2 == 0) 
+    {
+        // Even number of elements
+        return (*(arr + (size / 2 - 1)) + *(arr + size / 2)) / 2;
+    } 
+    else 
+    {
+        // Odd number of elements 
+        return *(arr + size / 2);
+    }
+}
+
+// Function to print the elements of an array
+void printArray(int* arr, int size) 
+{
+    for (int i = 0; i < size; ++i) 
+    {
+        cout << *(arr + i) << " ";
+    }
+    cout << endl;
 }
