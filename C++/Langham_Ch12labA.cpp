@@ -16,11 +16,11 @@
 Directions:
 
     Write a program that accepts as input a sentence with all the words running 
-   together, but the first character of each word is an uppercase letter and stores it in the 
-   form of a string object. Convert the sentence to a string in which the words are separated 
-   by spaces and only the first word starts with an uppercase letter. For example, the string 
-   “StopAndSmellTheRoses” would be converted to “Stop and smell the roses”. Note:  += operator
-   can be used with strings.  
+    together, but the first character of each word is an uppercase letter and stores it in the 
+    form of a string object. Convert the sentence to a string in which the words are separated 
+    by spaces and only the first word starts with an uppercase letter. For example, the string 
+    “StopAndSmellTheRoses” would be converted to “Stop and smell the roses”. Note:  += operator
+    can be used with strings.  
 
 Sample Output:
 
@@ -39,8 +39,6 @@ questions with full integrity and honesty, I understand if I answer
 */
 
 #include <iostream>
-#include <algorithm>
-#include <iomanip>
 
 using namespace std;
 
@@ -51,7 +49,6 @@ int main()
 {
      // Declare variables
     string str;
-    int size;
 
     // Prompt user for input
     cout << "Enter a sentence with all the words running together, but the first character of each word is an uppercase letter: ";
@@ -61,22 +58,33 @@ int main()
     CovertString(str);
 
      // Display the new string
-    cout << "The new string is: " << str << endl;
+    cout << "The new string is: " << str << "." << endl;
 
     return 0;
 }
 
 void CovertString(string& str)
 {
-    // Convert the sentence to a string in which the words are separated by spaces and only the first word starts with an uppercase letter
+    // Convert the sentence.
     for (int i = 0; i < str.length(); i++)
     {
-        if (isupper(str[i]))
+        //Capitalizes the first letter.
+        if (i == 0)
+        {
+             str[0] = toupper(str[0]);
+
+        }
+        //Switches the uppercase letters to lowercase & inserts a space.
+        else if (isupper(str[i]))
         {
             str[i] = tolower(str[i]);
             str.insert(i, " ");
         }
+        //Keeps the lowercase letters to lowercase.
+        else
+        {
+            str[i] = tolower(str[i]);
+        }
     }
-
 }
 
