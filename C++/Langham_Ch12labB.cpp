@@ -42,86 +42,72 @@ questions with full integrity and honesty, I understand if I answer
 */
 
 #include <iostream>
-
+#include <cstring>
 using namespace std;
 
-// Function prototypes
-void Upper(string& str, string& strUpper);
-void Lower(string& str, string& strLower);
-void Flip(string& str, string& strFlip);
+// Function Prototypes
+void upper(char[]);
+void lower(char[]);
+void flip(char[]);
 
-int main()
-{
-// Declare variables
-    string str;
-    string strUpper;
-    string strLower;
-    string strFlip;
 
-    // Welcome & Prompt user for input
-    cout << "Welcome to the Case Manipulator!" << endl;
-    cout << "Please, Enter a sentence: ";
-    getline(cin, str);
+int main() {
+    const int MAX_SIZE = 100;
+    char inputString[MAX_SIZE];
 
-    // Call function to convert string
-    Upper(str, strUpper);
-    Lower(str, strLower);
-    Flip(str, strFlip);
+    // Accept a string from the user
+    cout << "Welcome to the Case Manipulator" << endl;
+    cout << "Enter a sentence: ";
+    cin.getline(inputString, MAX_SIZE);
 
-     // Display the new string
-     cout << " Original: " << str << endl;
-     cout << " Uppercase: " << strUpper << endl;
-     cout << " Lowercase: " << strLower << endl;
-     cout << " Flipped: " << strFlip << endl;
+    // Display the original string
+    cout << "Original: " << inputString << endl;
+
+    // Make a copy of the original string for each function
+    char upperString[MAX_SIZE];
+    char lowerString[MAX_SIZE];
+    char flipString[MAX_SIZE];
+
+    strcpy(upperString, inputString);
+    strcpy(lowerString, inputString);
+    strcpy(flipString, inputString);
+
+    // Apply each function
+    upper(upperString);
+    lower(lowerString);
+    flip(flipString);
+
+    // Display the results
+    cout << "Uppercase: " << upperString << endl;
+    cout << "Lowercase: " << lowerString << endl;
+    cout << "Flipped: " << flipString << endl;
+
+    return 0;
 }
 
-void Upper(string& str, string& strUpper)
-{
-    // Copy string to new string
-    strUpper = str; 
+// Function Definitions
 
-    // Loop through string and convert to uppercase
-    for (int i = 0; i < strUpper.length(); i++)
-    {
-        if (islower(strUpper[i]))
-        {
-            strUpper[i] = toupper(strUpper[i]);
-        }
+// Function to convert a string to uppercase
+void upper(char* str) {
+    for (int i = 0; str[i] != '\0'; ++i) {
+        str[i] = toupper(str[i]);
     }
 }
 
-void Lower(string& str, string& strLower)
-{
-    // Copy string to new string
-    strLower = str; 
-
-    // Loop through string and convert to lowercase
-    for (int i = 0; i < strLower.length(); i++)
-    {
-        if (isupper(strLower[i]))
-        {
-            strLower[i] = tolower(strLower[i]);
-        }
+// Function to convert a string to lowercase
+void lower(char* str) {
+    for (int i = 0; str[i] != '\0'; ++i) {
+        str[i] = tolower(str[i]);
     }
 }
 
-void Flip(string& str, string& strFlip)
-{
-    // Copy string to new string
-    strFlip = str; 
-
-    // Loop through string and flip case
-    for (int i = 0; i < strFlip.length(); i++)
-    {
-        // If uppercase, convert to lowercase
-        if (isupper(strFlip[i]))
-        {
-            strFlip[i] = tolower(strFlip[i]);
-        }
-        // If lowercase, convert to uppercase
-        else if (islower(strFlip[i]))
-        {
-            strFlip[i] = toupper(strFlip[i]);
+// Function to flip the case of a string
+void flip(char* str) {
+    for (int i = 0; str[i] != '\0'; ++i) {
+        if (isupper(str[i])) {
+            str[i] = tolower(str[i]);
+        } else if (islower(str[i])) {
+            str[i] = toupper(str[i]);
         }
     }
 }
